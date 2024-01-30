@@ -3,6 +3,7 @@ import Image from 'next/image'
 import { FaEnvelope, FaFacebookF, FaLinkedinIn, FaPhone, FaTwitter } from 'react-icons/fa6'
 import { FaGlobeAmericas } from "react-icons/fa";
 import logo from '../../../public/img/logo.png';
+// region Import footer photos
 import footer_photo_1 from '../../../public/img/footer_photo_1.jpg';
 import footer_photo_2 from '../../../public/img/footer_photo_2.jpg';
 import footer_photo_3 from '../../../public/img/footer_photo_3.jpg';
@@ -12,9 +13,10 @@ import footer_photo_6 from '../../../public/img/footer_photo_6.jpg';
 import footer_photo_7 from '../../../public/img/footer_photo_7.jpg';
 import footer_photo_8 from '../../../public/img/footer_photo_8.jpg';
 import footer_photo_9 from '../../../public/img/footer_photo_9.jpg';
-
+// endregion
 const Footer = () => {
 	const year = new Date().getFullYear()
+	const footerPhotos = [footer_photo_1, footer_photo_2, footer_photo_3, footer_photo_4, footer_photo_5, footer_photo_6, footer_photo_7, footer_photo_8, footer_photo_9]
 	return (
 		<>
 			<footer className="bg-background h-auto text-primary">
@@ -72,15 +74,9 @@ const Footer = () => {
 					<div className="w-[21%]">
 						<h6 className='font-bold capitalize my-4'>Instagram photos</h6>
 						<div className='grid grid-cols-3 gap-4 h-60 w-60'>
-							<Image src={footer_photo_1} alt="Photo 1" className=""></Image>
-							<Image src={footer_photo_2} alt="Photo 2" className=""></Image>
-							<Image src={footer_photo_3} alt="Photo 3" className=""></Image>
-							<Image src={footer_photo_4} alt="Photo 4" className=""></Image>
-							<Image src={footer_photo_5} alt="Photo 5" className=""></Image>
-							<Image src={footer_photo_6} alt="Photo 6" className=""></Image>
-							<Image src={footer_photo_7} alt="Photo 7" className=""></Image>
-							<Image src={footer_photo_8} alt="Photo 8" className=""></Image>
-							<Image src={footer_photo_9} alt="Photo 9" className=""></Image>
+							{footerPhotos.map((photo, index) => (
+								<Image src={photo} alt={`Photo ${index + 1}`} className="" key={index}></Image>
+							))}
 						</div>
 					</div>
 					<div className="w-1/4">

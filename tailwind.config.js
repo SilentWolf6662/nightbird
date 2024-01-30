@@ -16,6 +16,7 @@ module.exports = {
 		extend: {
 			fontFamily: {
 				greatVibes: ['Great Vibes', 'arial', 'sans-serif'],
+				dosis: ['Dosis', 'arial', 'sans-serif'],
 				arial: ['arial', 'sans-serif'],
 			},
 			colors: {
@@ -30,6 +31,11 @@ module.exports = {
 			},
 			height: {
 				'1p': '1px',
+				vh: '100vh',
+			},
+			width: {
+				'1p': '1px',
+				vw: '100vw',
 			},
 			backgroundImage: {
 				'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
