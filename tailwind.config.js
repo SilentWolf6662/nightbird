@@ -14,6 +14,10 @@ module.exports = {
 			xxl: '1400px',
 		},
 		extend: {
+			fontFamily: {
+				greatVibes: ['Great Vibes', 'arial', 'sans-serif'],
+				arial: ['arial', 'sans-serif'],
+			},
 			colors: {
 				primary: '#ffffff',
 				secondary: '#2d3748',
