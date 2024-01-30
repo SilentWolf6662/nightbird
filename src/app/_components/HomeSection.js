@@ -1,5 +1,9 @@
 const HomeSection = () => {
-    return <main>Hello from Home</main>
+    return (
+        <>
+            
+        </>
+    )
 }
 
 export default HomeSection;
