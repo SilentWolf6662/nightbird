@@ -1,15 +1,15 @@
-// `app/about/page.js` is the UI for the `/about` URL
+// `app/blog/detailTemplate/page.js` is the UI for the `/blog/detailTemplate` URL
 'use client';
 import Image from 'next/image';
 import title_decor from '../../../public/img/title_decor.png';
-export default function Blog() {
+export default function BlogDetail() {
     return (
         <>
             <header className="bg-[url('/img/hm-gallery-bg.jpg')] bg-no-repeat text-primary h-72 flex justify-center">
                 <div className="absolute bg-black bg-opacity-60 w-full h-72"></div>
                 <div className="flex flex-col justify-center items-center z-10">
                     <h1 className="font-greatVibes text-5xl">Blog</h1>
-                    <p className="text-2xl">Home {'>'} Blog {'>'} <span className="text-accent">Blog Grid View</span></p>
+                    <p className="text-2xl">Home {'>'} Blog {'>'} <span className="text-accent">Blog Details View</span></p>
                 </div>
             </header>
             <main className="bg-background text-primary">

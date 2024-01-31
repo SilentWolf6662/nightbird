@@ -60,15 +60,15 @@ const Footer = () => {
 					<div className="w-1/4 text-left mx-5">
 						<h6 className='font-bold capitalize my-4'>Twitter feed</h6>
 
-						<div className=''>
+						<div className='text-primary/80'>
 							<FaTwitter className="mr-2 inline-block" />
-							<p className='inline'>This is a very exclusive nightclub, that is known as NIGHT BIRD. I am really proud to be part of the Night Bird</p>
-							<p className='font-bold'>9. November 2017</p>
+							<p className='inline'>This is a very exclusive nightclub, that is known as NIGHT BIRD. I am really proud to be part of the Night Bird.</p>
+							<p className='font-semibold text-primary'>9. November 2017.</p>
 						</div>
-						<div className='my-5'>
+						<div className='my-5 text-primary/80'>
 							<FaTwitter className="mr-2 inline-block" />
-							<p className='inline'>Night Bird presents some very famous artists and has special serving of food and drinks</p>
-							<p className='font-bold'>12. November 2017</p>
+							<p className='inline'>Night Bird presents some very famous artists and has special serving of food and drinks.</p>
+							<p className='font-semibold text-primary'>12. November 2017.</p>
 						</div>
 					</div>
 					<div className="w-[21%]">

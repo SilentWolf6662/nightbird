@@ -31,11 +31,9 @@ module.exports = {
 			},
 			height: {
 				'1p': '1px',
-				vh: '100vh',
 			},
 			width: {
 				'1p': '1px',
-				vw: '100vw',
 			},
 			backgroundImage: {
 				'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
