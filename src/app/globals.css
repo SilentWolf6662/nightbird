@@ -77,7 +77,7 @@
 	display: grid;
 	height: calc(100vh - 10px);
 	grid-template: repeat(6, 1fr) / repeat(6, 1fr);
-	grid-gap: 0.5em;
+	grid-gap: 1rem;
 }
 
 @media (max-width: 800px) {
@@ -120,8 +120,7 @@
 	color: #000;
 	background-color: #000;
 	font: bold 4em 'Helvetica';
-	text-shadow: 0 -1px 5px #fff, -1px 0px 5px #fff, 0 1px 5px #fff,
-		1px 0px 5px #fff;
+	text-shadow: 0 -1px 5px #fff, -1px 0px 5px #fff, 0 1px 5px #fff, 1px 0px 5px #fff;
 	padding: 2rem;
 	mix-blend-mode: difference;
 	width: 100%;
@@ -135,9 +134,9 @@
 	transition: all ease 1s;
 }
 
-#gallery > figure:hover img {
+/* #gallery > figure:hover img {
 	filter: blur(4px);
-}
+} */
 
 #gallery > figure {
 	overflow: hidden;

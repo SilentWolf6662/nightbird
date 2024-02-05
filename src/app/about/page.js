@@ -1,21 +1,15 @@
 // `app/about/page.js` is the UI for the `/about` URL
 'use client';
 import Image from 'next/image';
+import CustomHeader from '../components/CustomHeader';
 import title_decor from '../../../public/img/title_decor.png';
 import aboutImg from '../../../public/img/about.jpg';
-import banner1 from '../../../public/img/banner1.jpg';
 import StockFootage from '../components/StockFootage';
 
 export default function About() {
     return (
         <>
-            <header className="bg-[url('/img/hm-gallery-bg.jpg')] bg-no-repeat text-primary h-72 flex justify-center">
-                <div className="absolute bg-black bg-opacity-60 w-full h-72"></div>
-                <div className="flex flex-col justify-center items-center z-10">
-                    <h1 className="font-greatVibes text-5xl">About Us</h1>
-                    <p className="text-2xl">Home {'>'} <span className="text-accent">About Us</span></p>
-                </div>
-            </header>
+            <CustomHeader title={'About'} breadcrumb={['Home']} breadcrumbActive={'About us'} />
             <main className="bg-background text-primary">
                 <article className="container relative h-fit flex-col justify-center items-center mb-64">
                     <section className='justify-center items-center pt-10'>

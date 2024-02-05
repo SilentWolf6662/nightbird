@@ -2,18 +2,13 @@
 'use client';
 import { useRouter } from 'next/navigation'
 import Image from 'next/image';
+import CustomHeader from './components/CustomHeader';
 import record from '../../public/img/record_not_found.png';
 export default function NotFound() {
     const router = useRouter()
     return (
         <>
-            <header className="bg-[url('/img/hm-gallery-bg.jpg')] bg-no-repeat text-primary h-72 flex justify-center">
-                <div className="absolute bg-black bg-opacity-60 w-full h-72"></div>
-                <div className="flex flex-col justify-center items-center z-10">
-                    <h4 className="font-greatVibes text-5xl">404</h4>
-                    <p className="text-2xl">Home {'>'} <span className="text-accent">404</span></p>
-                </div>
-            </header>
+            <CustomHeader title={'404'} breadcrumb={['Home']} breadcrumbActive={'404'} />
             <main className="bg-background text-primary">
                 <section className="relative h-full flex-col justify-center items-center">
                     <div className='flex justify-center items-center pt-20'>

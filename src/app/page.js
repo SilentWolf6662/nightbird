@@ -15,6 +15,7 @@ import banner3 from '../../public/img/banner3.jpg';
 
 const banner = [banner1, banner2, banner3];
 const sliderTimer = (5000 * 1.5);
+
 let executed = false;
 export default function Home() {
 	/* The line `const [page, setPage] = useState(1);` is using the `useState` hook from React to declare
@@ -25,17 +26,19 @@ export default function Home() {
 	used to set up a timer that changes the value of the `page` state variable every `sliderTimer`
 	milliseconds. */
 	useEffect(() => {
-		const interval = setInterval(() => {
+		const sliderInterval = setInterval(() => {
 			setPage(prev => ((prev + 1) >= 4 ? 1 : prev + 1));
 		}, sliderTimer);
 
-		if (executed) return () => clearInterval(interval);
+		if (executed) return () => {
+			clearInterval(sliderInterval);
+		}
 
 		executed = true;
 
-		console.log('viewport height: ', window.innerHeight);
-		console.log('viewport width: ', window.innerWidth);
-		return () => clearInterval(interval);
+		return () => {
+			clearInterval(sliderInterval);
+		};
 	}, [])
 
 	return (
@@ -47,9 +50,11 @@ export default function Home() {
 							<Image sizes='100vw' alt="Banner Image" src={banner[page-1]} className='h-full' />
 						</figure>
 						<figure className='absolute bottom-8 py-3 left-1/2 flex items-baseline -translate-x-1/2'>
-							<Image src={page === 1 ? slider_dot_active : slider_dot} alt="banner bar" className="h-full" />
-							<Image src={page === 2 ? slider_dot_active : slider_dot} alt="banner bar" className="mx-2" />
-							<Image src={page === 3 ? slider_dot_active : slider_dot} alt="banner bar" className="h-full" />
+							{banner.map((_, index) => (
+								<button key={`banner-dot-${index + 1}`} onClick={() => setPage(index + 1)} className='mx-1'>
+									<Image src={page === (index + 1) ? slider_dot_active : slider_dot} alt="banner bar" className="h-full" />
+								</button>
+							))}
 						</figure>
 						<div className='absolute top-1/3 left-1/2 transform -translate-x-1/2 text-center'>
 							<div className='flex gap-3 font-greatVibes text-7xl justify-center'>
@@ -85,7 +90,7 @@ export default function Home() {
 							<Image src={about1Img} height={900} alt="about photo" className='' />
 						</figure>
 					</section>
-					<section className='container h-fit mt-40 flex justify-center items-center pb-10'>
+					<section className='container h-fit mt-40 flex justify-center items-center pb-20'>
 						<div className='h-fit flex flex-col justify-center items-center mb-40'>
 							<div className='justify-center items-center'>
 								<h2 className='text-4xl font-greatVibes text-center capitalize'>Upcoming Event’s</h2>
