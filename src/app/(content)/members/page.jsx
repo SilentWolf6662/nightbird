@@ -1,7 +1,7 @@
-// `app/about/page.js` is the UI for the `/about` URL
+// `app/member/page.jsx` is the UI for the `/member` URL
 import Image from 'next/image';
-import CustomHeader from '../components/CustomHeader';
-import title_decor from '../../../public/img/title_decor.png';
+import CustomHeader from '@/components/CustomHeader'
+import title_decor from './../../../../public/img/title_decor.png';
 export default function Members() {
     return (
         <>
@@ -11,7 +11,7 @@ export default function Members() {
                     <section className='justify-center items-center pt-10'>
                         <h2 className='text-4xl font-greatVibes text-center capitalize'>Members</h2>
                         <figure className='flex flex-col justify-center items-center mt-2 mb-2'>
-                            <Image src={title_decor} height={20} alt='Title Decor' />
+                            <Image draggable="false" dragstart="false" src={title_decor} height={20} alt='Title Decor' className='unselectable ' />
                         </figure>
                     </section>
                 </article>

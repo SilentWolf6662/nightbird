@@ -2,17 +2,18 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { FaEnvelope, FaFacebookF, FaLinkedinIn, FaPhone, FaTwitter } from 'react-icons/fa6'
 import { FaGlobeAmericas } from "react-icons/fa";
-import logo from '../../../public/img/logo.png';
+import { subscribeNews } from './Forms';
+import logo from './../../public/img/logo.png';
 // region Import footer photos
-import footer_photo_1 from '../../../public/img/footer_photo_1.jpg';
-import footer_photo_2 from '../../../public/img/footer_photo_2.jpg';
-import footer_photo_3 from '../../../public/img/footer_photo_3.jpg';
-import footer_photo_4 from '../../../public/img/footer_photo_4.jpg';
-import footer_photo_5 from '../../../public/img/footer_photo_5.jpg';
-import footer_photo_6 from '../../../public/img/footer_photo_6.jpg';
-import footer_photo_7 from '../../../public/img/footer_photo_7.jpg';
-import footer_photo_8 from '../../../public/img/footer_photo_8.jpg';
-import footer_photo_9 from '../../../public/img/footer_photo_9.jpg';
+import footer_photo_1 from './../../public/img/footer_photo_1.jpg';
+import footer_photo_2 from './../../public/img/footer_photo_2.jpg';
+import footer_photo_3 from './../../public/img/footer_photo_3.jpg';
+import footer_photo_4 from './../../public/img/footer_photo_4.jpg';
+import footer_photo_5 from './../../public/img/footer_photo_5.jpg';
+import footer_photo_6 from './../../public/img/footer_photo_6.jpg';
+import footer_photo_7 from './../../public/img/footer_photo_7.jpg';
+import footer_photo_8 from './../../public/img/footer_photo_8.jpg';
+import footer_photo_9 from './../../public/img/footer_photo_9.jpg';
 // endregion
 const Footer = () => {
 	const year = new Date().getFullYear()
@@ -22,7 +23,7 @@ const Footer = () => {
 			<footer className="bg-background h-auto text-primary">
 				<div className="container flex justify-center pt-6">
 					<div className="w-1/4 text-left">
-						<Image src={logo} alt="Night Bird logo" className=""></Image>
+						<Image draggable="false" dragstart="false" src={logo} alt="Night Bird logo" className=" unselectable"></Image>
 						<p className="">
 							It’s a night club. Anyone can join our club. If you
 							are interested in joining our club.
@@ -75,16 +76,16 @@ const Footer = () => {
 						<h6 className='font-bold capitalize my-4'>Instagram photos</h6>
 						<div className='grid grid-cols-3 gap-4 h-60 w-60'>
 							{footerPhotos.map((photo, index) => (
-								<Image src={photo} alt={`Photo ${index + 1}`} className="" key={index}></Image>
+								<Image draggable="false" dragstart="false" src={photo} alt={`Photo ${index + 1}`} className=" unselectable" key={index}></Image>
 							))}
 						</div>
 					</div>
 					<div className="w-1/4">
 						<h6 className='font-bold capitalize my-4'>Sign up for newsletter</h6>
-						<form className='flex flex-col'>
-							<input type="text" placeholder='Your Name' className='bg-background border border-primary px-2 py-1 my-1'></input>
-							<input type="text" placeholder='Your E-mail' className='bg-background border border-primary px-2 py-1 my-1'></input>
-							<button type='submit' className='bg-accent text-primary px-2 py-1 my-1 text-lg'>Submit</button>
+						<form id="formNewsletter" name='formNewsletter' className='flex flex-col'>
+							<input name='name' type="text" placeholder='Your Name' className='bg-background border border-primary px-2 py-1 my-1'></input>
+							<input name='email' type="email" placeholder='Your E-mail' className='bg-background border border-primary px-2 py-1 my-1'></input>
+							<button type='submit' className='bg-accent text-primary px-2 py-1 my-1 text-lg uppercase' onClick={subscribeNews()}>S u b m i t</button>
 						</form>
 						<h6 className='font-bold capitalize mb-4 mt-8'>Get social</h6>
 						<div className='flex'>

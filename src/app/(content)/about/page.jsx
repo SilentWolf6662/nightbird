@@ -1,10 +1,10 @@
-// `app/about/page.js` is the UI for the `/about` URL
+// `app/about/page.jsx` is the UI for the `/about` URL
 'use client';
 import Image from 'next/image';
-import CustomHeader from '../components/CustomHeader';
-import title_decor from '../../../public/img/title_decor.png';
-import aboutImg from '../../../public/img/about.jpg';
-import StockFootage from '../components/StockFootage';
+import CustomHeader from './../../../components/CustomHeader'
+import StockFootage from './../../../components/StockFootage'
+import title_decor from './../../../../public/img/title_decor.png'
+import aboutImg from './../../../../public/img/about.jpg'
 
 export default function About() {
     return (
@@ -15,12 +15,12 @@ export default function About() {
                     <section className='justify-center items-center pt-10'>
                         <h2 className='text-4xl font-greatVibes text-center capitalize'>About Night Bird</h2>
                         <figure className='flex flex-col justify-center items-center mt-2 mb-2'>
-                            <Image src={title_decor} height={20} alt='Title Decor' />
+                            <Image draggable="false" dragstart="false" src={title_decor} height={20} alt='Title Decor' className='unselectable' />
                         </figure>
                     </section>
                     <section className='flex justify-center items-start pt-5'>
                         <figure className='object-center object-none h-full w-1/4 mr-4'>
-                            <Image src={aboutImg} height={450} alt='About Image' />
+                            <Image draggable="false" dragstart="false" src={aboutImg} height={450} alt='About Image' className='unselectable' />
                         </figure>
                         <div className='w-1/2'>
                             <p className='mb-4'>
@@ -39,7 +39,7 @@ export default function About() {
                     <section className='justify-center items-center'>
                         <h2 className='text-4xl font-greatVibes text-center capitalize'>Our Videos</h2>
                         <figure className='flex flex-col justify-center items-center mt-2 mb-2'>
-                            <Image src={title_decor} height={20} alt='Title Decor' />
+                            <Image draggable="false" dragstart="false" src={title_decor} height={20} alt='Title Decor' className='unselectable' />
                         </figure>
                         <div className='grid grid-cols-3 gap-8 mt-10'>
                             <StockFootage />

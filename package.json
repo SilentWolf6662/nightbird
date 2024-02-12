@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "contentful": "^10.6.19",
+    "lodash": "^4.17.21",
     "next": "14.1.0",
     "react": "^18",
     "react-dom": "^18",
