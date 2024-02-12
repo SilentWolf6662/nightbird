@@ -1,10 +1,30 @@
-// `app/register/page.jsx` is the UI for the `/register` URL
-/* prettier-ignore */
+'use client'
 import Image from 'next/image'
 import CustomHeader from '@/components/CustomHeader'
-import title_decor from './../../../../../public/img/title_decor.png'
 import MembershipCard from '@/components/MembershipCard'
-export default async function Register() {
+import title_decor from './../../../../public/img/title_decor.png'
+export default function Form() {
+	const handleSubmit = async event => {
+		event.preventDefault()
+		const formData = new FormData(event.currentTarget)
+		const response = await fetch('/api/auth/register', {
+			method: 'POST',
+			body: JSON.stringify({
+				membership: formData.get('membership'),
+				firstName: formData.get('firstName'),
+				lastName: formData.get('lastName'),
+				address: formData.get('address'),
+				pfp: formData.get('pfp'),
+				email: formData.get('email'),
+				phone: formData.get('phone'),
+				date: formData.get('date'),
+				username: formData.get('username'),
+				password: formData.get('password'),
+				passwordConfirm: formData.get('passwordConfirm')
+			})
+		})
+		console.log({ response })
+	}
 	return (
 		<>
 			<CustomHeader
@@ -30,36 +50,36 @@ export default async function Register() {
 						</figure>
 					</section>
 					<section className='flex gap-4 justify-center items-center pt-10'>
-						<div class='container px-5 mx-auto flex flex-wrap'>
-							<div class='lg:w-1/4 mt-48 hidden lg:block'>
-								<div class='mt-px border-t border-gray-300 border-b border-l overflow-hidden'>
-									<p class='text-primary/90 h-12 text-center px-4 flex items-center justify-start'>
+						<div className='container px-5 mx-auto flex flex-wrap'>
+							<div className='lg:w-1/4 mt-48 hidden lg:block'>
+								<div className='mt-px border-t border-gray-300 border-b border-l overflow-hidden'>
+									<p className='text-primary/90 h-12 text-center px-4 flex items-center justify-start'>
 										Website Member Access
 									</p>
-									<p class='bg-primary/10 text-primary/90 h-12 text-center px-4 flex items-center justify-start -mt-px'>
+									<p className='bg-primary/10 text-primary/90 h-12 text-center px-4 flex items-center justify-start -mt-px'>
 										Club Membership
 									</p>
-									<p class='text-primary/90 h-12 text-center px-4 flex items-center justify-start'>
+									<p className='text-primary/90 h-12 text-center px-4 flex items-center justify-start'>
 										Entry fee Less
 									</p>
-									<p class='bg-primary/10 text-primary/90 h-12 text-center px-4 flex items-center justify-start'>
+									<p className='bg-primary/10 text-primary/90 h-12 text-center px-4 flex items-center justify-start'>
 										Free tequila
 									</p>
-									<p class='text-primary/90 h-12 text-center px-4 flex items-center justify-start'>
+									<p className='text-primary/90 h-12 text-center px-4 flex items-center justify-start'>
 										Get big Dance Floor
 									</p>
-									<p class='bg-primary/10 text-primary/90 h-12 text-center px-4 flex items-center justify-start'>
+									<p className='bg-primary/10 text-primary/90 h-12 text-center px-4 flex items-center justify-start'>
 										Party with international DJ’s
 									</p>
-									<p class='text-primary/90 h-12 text-center px-4 flex items-center justify-start'>
+									<p className='text-primary/90 h-12 text-center px-4 flex items-center justify-start'>
 										Meetup with Celebraties
 									</p>
-									<p class='bg-primary/10 text-primary/90 h-12 text-center px-4 flex items-center justify-start'>
+									<p className='bg-primary/10 text-primary/90 h-12 text-center px-4 flex items-center justify-start'>
 										Free every liquor
 									</p>
 								</div>
 							</div>
-							<div class='flex lg:w-3/4 w-full flex-wrap lg:border border-gray-300'>
+							<div className='flex lg:w-3/4 w-full flex-wrap lg:border border-gray-300'>
 								<MembershipCard
 									title={`Freebie`}
 									price={0}
@@ -143,15 +163,18 @@ export default async function Register() {
 						</figure>
 					</section>
 					<section className='justify-center items-center pt-10'>
-						<form className='flex flex-col justify-center items-center'>
+						<form
+							onSubmit={handleSubmit}
+							className='flex flex-col justify-center items-center'>
 							<div className='flex flex-col justify-center items-start w-full'>
-								<label for='membership' className='p-2'>
+								<label htmlFor='membership' className='p-2'>
 									Membership Type:
 								</label>
 								<select
 									id='membership'
+									name='membership'
 									required
-									className='w-full p-2 m-2 bg-background border-[1px] border-primary/55'>
+									className='w-full p-2 m-2 bg-background border-[1px] border-primary/55 focus:ring-2 focus:ring-accent focus:ring-offset-2'>
 									<option value=''>
 										Select membership plan...
 									</option>
@@ -174,85 +197,139 @@ export default async function Register() {
 							</div>
 							<div className='flex flex-row justify-center items-center w-full'>
 								<div className='flex flex-col justify-center items-start w-full pr-2 mr-2'>
-									<label for='first_name' className='p-2'>
+									<label htmlFor='firstName' className='p-2'>
 										First Name:
 									</label>
 									<input
-										id='first_name'
+										required
+										id='firstName'
+										name='firstName'
 										type='text'
 										placeholder='First Name'
-										className='w-full p-2 m-2 bg-background border-[1px] border-primary/55'
+										className='w-full p-2 m-2 bg-background border-[1px] border-primary/55 focus:ring-2 focus:ring-accent focus:ring-offset-2'
 									/>
 								</div>
 								<div className='flex flex-col justify-center items-start w-full pl-2 ml-2'>
-									<label for='last_name' className='p-2'>
+									<label htmlFor='lastName' className='p-2'>
 										Last Name:
 									</label>
 									<input
-										id='last_name'
+										required
+										id='lastName'
+										name='lastName'
 										type='text'
 										placeholder='Last Name'
-										className='w-full p-2 m-2 bg-background border-[1px] border-primary/55'
+										className='w-full p-2 m-2 bg-background border-[1px] border-primary/55 focus:ring-2 focus:ring-accent focus:ring-offset-2'
 									/>
 								</div>
 							</div>
 							<div className='flex flex-col justify-center items-start w-full'>
-								<label for='email' className='p-2'>
+								<label htmlFor='email' className='p-2'>
 									Email:
 								</label>
 								<input
+									required
 									id='email'
+									name='email'
 									type='email'
 									placeholder='Email'
-									className='w-full p-2 m-2 bg-background border-[1px] border-primary/55'
+									className='w-full p-2 m-2 bg-background border-[1px] border-primary/55 focus:ring-2 focus:ring-accent focus:ring-offset-2'
 								/>
 							</div>
 							<div className='flex flex-col justify-center items-start w-full'>
-								<label
-									for='dateOfMembershipStart'
-									className='p-2'>
+								<label htmlFor='date' className='p-2'>
 									Date of membership start:
 								</label>
 								<input
-									id='dateOfMembershipStart'
+									required
+									id='date'
+									name='date'
 									type='date'
 									placeholder='Date'
 									min={`${
 										new Date().toISOString().split('T')[0]
 									}`}
-									className='w-full p-2 m-2 bg-background border-[1px] border-primary/55 text-primary/60'
+									className='w-full p-2 m-2 bg-background border-[1px] border-primary/55 text-primary/60 focus:ring-2 focus:ring-accent focus:ring-offset-2'
 								/>
 							</div>
 							<div className='flex flex-col justify-center items-start w-full'>
-								<label for='username' className='p-2'>
+								<label htmlFor='address' className='p-2'>
+									Address:
+								</label>
+								<input
+									required
+									id='address'
+									name='address'
+									type='text'
+									placeholder='Address'
+									className='w-full p-2 m-2 bg-background border-[1px] border-primary/55 focus:ring-2 focus:ring-accent focus:ring-offset-2'
+								/>
+							</div>
+							<div className='flex flex-col justify-center items-start w-full'>
+								<label htmlFor='phone' className='p-2'>
+									Phone Number:
+								</label>
+								<input
+									required
+									id='phone'
+									name='phone'
+									type='tel'
+									placeholder='Phone Number'
+									className='w-full p-2 m-2 bg-background border-[1px] border-primary/55 focus:ring-2 focus:ring-accent focus:ring-offset-2'
+								/>
+							</div>
+							<div className='flex flex-col justify-center items-start w-full'>
+								<label htmlFor='pfp' className='p-2'>
+									Profile Picture:
+								</label>
+								<input
+									required
+									id='pfp'
+									name='pfp'
+									type='image'
+									placeholder='Profile Picture'
+									className='w-full p-2 m-2 bg-background border-[1px] border-primary/55 focus:ring-2 focus:ring-accent focus:ring-offset-2'
+								/>
+							</div>
+							<div className='flex flex-col justify-center items-start w-full'>
+								<label htmlFor='username' className='p-2'>
 									Username:
 								</label>
 								<input
+									required
 									id='username'
+									name='username'
 									type='text'
 									placeholder='Username'
-									className='w-full p-2 m-2 bg-background border-[1px] border-primary/55'
+									className='w-full p-2 m-2 bg-background border-[1px] border-primary/55 focus:ring-2 focus:ring-accent focus:ring-offset-2'
 								/>
 							</div>
 							<div className='flex flex-col justify-center items-start w-full'>
-								<label for='password' className='p-2'>
+								<label htmlFor='password' className='p-2'>
 									Password:
 								</label>
 								<input
+									required
+									id='password'
+									name='password'
 									type='password'
 									placeholder='Password'
-									className='w-full p-2 m-2 bg-background border-[1px] border-primary/55'
+									className='w-full p-2 m-2 bg-background border-[1px] border-primary/55 focus:ring-2 focus:ring-accent focus:ring-offset-2'
 								/>
 							</div>
 							<div className='flex flex-col justify-center items-start w-full'>
-								<label for='passwordConfirm' className='p-2'>
+								<label
+									htmlFor='passwordConfirm'
+									className='p-2'>
 									Confirm Password:
 								</label>
 								<input
+									required
 									id='passwordConfirm'
+									name='passwordConfirm'
 									type='password'
 									placeholder='Confirm Password'
-									className='w-full p-2 m-2 bg-background border-[1px] border-primary/55'
+									className='w-full p-2 m-2 bg-background border-[1px] border-primary/55 focus:ring-2 focus:ring-accent focus:ring-offset-2'
 								/>
 							</div>
 							<div className='flex flex-row justify-center items-start w-full mt-8 ml-4'>

@@ -190,3 +190,17 @@ input[type="date"]::-webkit-calendar-picker-indicator:hover {
 input {
 	color-scheme: dark;
 }
+
+input:invalid+span::after {
+	position: absolute;
+	content: "✖";
+	padding-left: 5px;
+	color: #8b0000;
+}
+
+input:valid+span::after {
+	position: absolute;
+	content: "✓";
+	padding-left: 5px;
+	color: #009000;
+}
