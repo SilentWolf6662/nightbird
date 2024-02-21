@@ -13,6 +13,11 @@ module.exports = {
 			xl: '1200px',
 			xxl: '1400px',
 		},
+		keyframes: {
+			shimmer: {
+				'100%': { transform: 'translateX(100%)' }
+			}
+		},
 		extend: {
 			fontFamily: {
 				greatVibes: ['Great Vibes', 'arial', 'sans-serif'],

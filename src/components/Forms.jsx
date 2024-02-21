@@ -79,7 +79,6 @@ function validateForm(formValues) {
 }
 
 function subscribeNews(form) {
-    return;
     const formData = new FormData(form);
     const formValues = Object.fromEntries(formData);
     // console.log(formData.get("name"));

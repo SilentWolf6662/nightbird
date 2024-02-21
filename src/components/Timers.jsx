@@ -49,7 +49,7 @@ const EventTimer = ({ eventDate }) => {
 
     return (
         <>
-            <div id="timer" className='flex gap-16 mt-5 text-center'>
+            <div id="timer" className='flex gap-6 md:gap-16 mt-5 text-center'>
                 <div className='rounded-full text-accent bg-primary h-16 w-16 flex flex-col justify-center items-center'>
                     <p className='font-greatVibes font-semibold' id='event1-cd-days'>
                         {days < 10 ? `0${days}` : days}

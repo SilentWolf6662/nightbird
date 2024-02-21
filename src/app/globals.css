@@ -88,10 +88,12 @@
 
 @media (max-width: 800px) {
 	#gallery {
+		height: calc(100vh - 10px);
 		display: flex;
 		align-items: flex-start;
 		flex-wrap: wrap;
-		justify-content: center;
+		justify-content: space-around;
+		overflow: auto;
 	}
 
 	#gallery>figure {
@@ -121,29 +123,11 @@
 	grid-row: span 2;
 }
 
-#gallery>figure>a {
-	opacity: 0;
-	position: absolute;
-	color: #000;
-	background-color: #000;
-	font: bold 4em 'Helvetica';
-	text-shadow: 0 -1px 5px #fff, -1px 0px 5px #fff, 0 1px 5px #fff, 1px 0px 5px #fff;
-	padding: 2rem;
-	mix-blend-mode: difference;
-	width: 100%;
-	height: 100%;
-	transition: all ease 1s;
-}
-
 #gallery>figure>img {
 	width: 100%;
 	min-height: 100%;
 	transition: all ease 1s;
 }
-
-/* #gallery > figure:hover img {
-	filter: blur(4px);
-} */
 
 #gallery>figure {
 	overflow: hidden;

@@ -1,30 +1,113 @@
+// src/app/%28content%29/register/form.jsx
 'use client'
 import Image from 'next/image'
 import CustomHeader from '@/components/CustomHeader'
 import MembershipCard from '@/components/MembershipCard'
 import title_decor from './../../../../public/img/title_decor.png'
+import { useRouter } from 'next/navigation'
+import { useEffect, useState } from 'react'
+let tempBase64 = null
+// Function to convert a file to base64
+function fileToBase64(file) {
+	return new Promise((resolve, reject) => {
+		const reader = new FileReader()
+		reader.readAsDataURL(file)
+		reader.onload = () => resolve(reader.result)
+		reader.onloadend = () => {
+			const base64String = reader.result
+			tempBase64 = base64String
+			resolve(base64String)
+		}
+		reader.onerror = error => reject(error)
+	})
+}
+
+// Function to convert base64 to a file
 export default function Form() {
+	const router = useRouter()
+	const [uploading, setUploading] = useState(false)
+	const [selectedFile, setSelectedFile] = useState()
+	const [base64, setBase64] = useState('')
+	const [fileType, setFileType] = useState('')
+	const [file, setFile] = useState()
+
+	const handlePfp = async file => {
+		if (!file) {
+			console.log('No file selected')
+			return
+		}
+		const result = await fileToBase64(file)
+		setBase64(result)
+		//console.log(`async base64: ${base64.length}`)
+		return result
+	}
+	const handleUpload = async file => {
+		setUploading(true)
+		try {
+			if (!base64) return
+			handlePfp(file)
+		} catch (error) {
+			console.log(error.message)
+		}
+		setUploading(false)
+	}
+	const handleImageChange = target => {
+		if (!target.files)
+			return alert('No file selected. Please select a file.')
+		const file = target.files[0]
+		if (!file) return alert('No file selected. Please select a file.')
+		console.log(file)
+		if (file.size > 1000000) {
+			return alert(
+				'File size is too big. Please select a file less than 1MB.'
+			)
+		}
+		/* if (
+			file.type !== 'image/png' ||
+			file.type !== 'image/jpeg' ||
+			file.type !== 'image/jpg'
+		) {
+			return alert(
+				'File type is not supported. Please select a PNG, JPG or JPEG file.'
+			)
+		} */
+		let imageBlob = new Blob([file], { type: 'image/png' })
+		console.log(imageBlob)
+		setSelectedFile(file)
+		console.log(selectedFile)
+
+		handlePfp(file)
+	}
 	const handleSubmit = async event => {
 		event.preventDefault()
+		/* handleUpload() */
 		const formData = new FormData(event.currentTarget)
 		const response = await fetch('/api/auth/register', {
 			method: 'POST',
-			body: JSON.stringify({
-				membership: formData.get('membership'),
-				firstName: formData.get('firstName'),
-				lastName: formData.get('lastName'),
-				address: formData.get('address'),
-				pfp: formData.get('pfp'),
-				email: formData.get('email'),
-				phone: formData.get('phone'),
-				date: formData.get('date'),
-				username: formData.get('username'),
-				password: formData.get('password'),
-				passwordConfirm: formData.get('passwordConfirm')
-			})
+			body: formData // Send formData instead of JSON
+			// Do not set the Content-Type header manually
+			// as FormData will automatically set it to multipart/form-data
 		})
-		console.log({ response })
+		const pfpUrl = URL.createObjectURL(selectedFile)
+
+		/* console.log({ response })
+
+		// Same every time
+		console.log({ selectedFile })
+
+		// Changing every time
+		console.log({ pfpUrl }) */
+
+		/* if (response.ok) {
+			router.push('/members')
+		} */
 	}
+	useEffect(() => {
+		console.log(`observer/useEffect selectedFile:`, selectedFile)
+	}, [selectedFile]) // This effect will run whenever `selectedFile` changes
+	useEffect(() => {
+		//console.log(`observer/useEffect base64: ${base64.length}`)
+	}, [base64]) // This effect will run whenever `base64` changes
 	return (
 		<>
 			<CustomHeader
@@ -282,14 +365,39 @@ export default function Form() {
 								<label htmlFor='pfp' className='p-2'>
 									Profile Picture:
 								</label>
-								<input
+								<label htmlFor='pfp'>
+									<input
+										id='pfp'
+										name='pfp'
+										type='file'
+										hidden
+										onChange={({ target }) => {
+											handleImageChange(target)
+										}}
+									/>
+									<div className='w-40 aspect-video rounded flex items-center justify-center border-2 border-dashed cursor-pointer'>
+										{base64 && selectedFile ? (
+											<Image
+												src={URL.createObjectURL(
+													selectedFile
+												)}
+												alt=''
+												width={160}
+												height={160}
+											/>
+										) : (
+											<span>Select Image</span>
+										)}
+									</div>
+								</label>
+								{/* <input
 									required
 									id='pfp'
 									name='pfp'
 									type='image'
 									placeholder='Profile Picture'
 									className='w-full p-2 m-2 bg-background border-[1px] border-primary/55 focus:ring-2 focus:ring-accent focus:ring-offset-2'
-								/>
+								/> */}
 							</div>
 							<div className='flex flex-col justify-center items-start w-full'>
 								<label htmlFor='username' className='p-2'>
@@ -310,6 +418,7 @@ export default function Form() {
 								</label>
 								<input
 									required
+									autoComplete='off'
 									id='password'
 									name='password'
 									type='password'
@@ -325,6 +434,7 @@ export default function Form() {
 								</label>
 								<input
 									required
+									autoComplete='off'
 									id='passwordConfirm'
 									name='passwordConfirm'
 									type='password'
@@ -334,15 +444,38 @@ export default function Form() {
 							</div>
 							<div className='flex flex-row justify-center items-start w-full mt-8 ml-4'>
 								<button
+									disabled={uploading}
 									type='button'
-									className='bg-accent text-primary p-2 mr-2 w-full'>
-									Cancel
+									onClick={() => {
+										router.push('/')
+									}}
+									className={`w-full bg-accent text-primary font-semibold py-2 px-4 mr-4 hover:bg-accent/80 focus:outline-none focus:ring-2 focus:ring-accent focus:ring-offset-2 ${
+										uploading ? `opacity-50` : `opacity-100`
+									}`}>
+									{uploading
+										? 'Registrating Member...'
+										: 'Cancel'}
 								</button>
 								<button
+									disabled={uploading}
 									type='submit'
-									className='bg-accent text-primary p-2 ml-2 w-full'>
-									Register
+									className={`w-full bg-accent text-primary font-semibold py-2 px-4 ml-4 hover:bg-accent/80 focus:outline-none focus:ring-2 focus:ring-accent focus:ring-offset-2 ${
+										uploading ? `opacity-50` : `opacity-100`
+									}`}>
+									{uploading
+										? 'Registrating Member...'
+										: 'Register'}
 								</button>
+							</div>
+							<div className='flex flex-row w-full mt-8 ml-4'>
+								<span className='text-primary/60 mr-1'>
+									Already a member?
+								</span>
+								<a
+									href='/login'
+									className='text-accent hover:underline'>
+									Login
+								</a>
 							</div>
 						</form>
 					</section>

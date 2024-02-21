@@ -4,23 +4,10 @@ import { FaCalendarAlt } from 'react-icons/fa'
 import CustomHeader from './../../../components/CustomHeader'
 import EventTimer from './../../../components/Timers'
 import title_decor from './../../../../public/img/title_decor.png'
-import eventImg1 from './../../../../public/img/event1.jpg'
-import eventImg2 from './../../../../public/img/event2.jpg'
-import eventImg3 from './../../../../public/img/event3.jpg'
-import { getEvents } from '@/lib/contentful/functions'
-import ContentfulLoader from '../../../loaders/ContentfulLoader'
+import { getAsset, getEntry, getEvents } from '@/lib/contentful/client'
+import { random } from 'lodash'
+import Event from './../../event'
 export default async function Events() {
-	function getCurDate(date) {
-		let yourDate = new Date(date)
-
-		if (isNaN(yourDate.getTime())) {
-			return '' // Return an empty string if the date is invalid
-		}
-
-		const offset = yourDate.getTimezoneOffset()
-		yourDate = new Date(yourDate.getTime() - offset * 60 * 1000)
-		return yourDate.toISOString().split('T')[0]
-	}
 	function formatDate(date) {
 		let dateToFormat = new Date(date),
 			dateString = '',
@@ -58,8 +45,43 @@ export default async function Events() {
 		//console.log(strTime, date, timeZone)
 		return strTime
 	}
-	// Fetch the blogs from Contentful
+
+	// Fetch the events from Contentful
 	const events = await getEvents()
+
+	// Fetch the data for each event
+	const eventsWithData = await Promise.all(
+		events.map(async event => {
+			const entry = await getEntry(event.sys.id)
+
+			//console.log('entry', entry)
+
+			// Assuming that the image field is a link to an Asset
+			const imageId = entry.fields.image['en-US'].sys.id
+			const image = await getAsset(imageId)
+			const imageUrl = image.fields.file['en-US'].url.replace(
+				'//',
+				'https://'
+			)
+			const imageWidth = image.fields.file['en-US'].details.image.width
+			const imageHeight = image.fields.file['en-US'].details.image.height
+			const imageTitle = image.fields.title['en-US']
+			const imageAlt = image.fields.description['en-US']
+			const description = entry.fields.description['en-US'].replace(
+				/\n/g,
+				'<br>'
+			)
+			return {
+				...event,
+				imageUrl: imageUrl,
+				imageTitle: imageTitle,
+				imageAlt: imageAlt,
+				imageWidth: imageWidth,
+				imageHeight: imageHeight,
+				description: description
+			}
+		})
+	)
 	//console.log(events)
 	return (
 		<>
@@ -69,7 +91,7 @@ export default async function Events() {
 				breadcrumbActive={'Events'}
 			/>
 			<main className='bg-background text-primary'>
-				<article className='container relative h-fit flex-col justify-center items-center pb-96'>
+				<article className='container relative h-fit flex-col justify-center items-center'>
 					<section className='justify-center items-center pt-10'>
 						<h2 className='text-4xl font-greatVibes text-center capitalize'>
 							Night Bird’s upcoming Events
@@ -85,52 +107,65 @@ export default async function Events() {
 							/>
 						</figure>
 					</section>
-					{events && events.length > 0 ? (
-						events.map((event, index) => (
+				</article>
+				<article className='container relative h-fit flex flex-col justify-center items-center pb-96'>
+					{eventsWithData && eventsWithData.length > 0 ? (
+						eventsWithData.map((event, index) => (
 							<section
-								className={`flex  ${
-									index % 2 ? 'flex-row-reverse' : 'flex-row'
-								} justify-evenly mt-10`}
+								className={`flex flex-col md:flex-row ${
+									index % 2
+										? 'md:flex-row-reverse'
+										: 'md:flex-row'
+								} justify-evenly mt-10 w-full`}
 								id={`${event.sys.id}`}
 								key={`${event.sys.id}`}>
-								<div className='w-1/2'>
-									<ContentfulLoader
-										image={event.fields.image.fields}
-										width={628}
-										height={0}
-										multiplier={1}
-									/>
+								<div className='w-full md:w-1/2'>
+									<figure
+										className={`m-0 p-0 w-fit h-fit`}
+										key={`${event.imageTitle}-${random(
+											false
+										)}`}>
+										<Image
+											draggable='false'
+											dragstart='false'
+											src={event.imageUrl}
+											alt={`${event.imageAlt}`}
+											className='unselectable'
+											width={628}
+											height={372}
+										/>
+									</figure>
 								</div>
 								<div
 									className={`flex flex-col justify-center items-start ${
-										index % 2 ? `mr-10` : `ml-10`
-									} w-1/2`}>
+										index % 2
+											? `mr-0 md:mr-10`
+											: `ml-0 md:ml-10`
+									} w-full md:w-1/2`}>
 									<h3 className='uppercase font-bold'>
-										{`${event.fields.title}`}
+										{event.fields.title['en-US']}
 									</h3>
 									<div className='text-primary/80 text-center flex justify-center items-baseline'>
 										<FaCalendarAlt className='mr-1 inline-block' />
 										<p className='inline'>
 											{`${formatDate(
-												event.fields.dateTime
+												event.fields.dateTime['en-US']
 											)}`}
 										</p>
 									</div>
-									<p className='text-primary/80 mb-2 mt-4'>
-										{`${event.fields.description}`}
-									</p>
+									<Event content={event.description}></Event>
 									<div className='font-greatVibes'>
 										<p className='inline mr-4'>
-											{`$ ${event.fields.price}`}
+											{`$ ${event.fields.price['en-US']}`}
 										</p>
 										<p className='inline'>
 											{`Starts at: ${formatTimeAMPM(
-												event.fields.dateTime
+												event.fields.dateTime['en-US']
 											)}`}
 										</p>
 									</div>
 									<EventTimer
-										eventDate={`${event.fields.dateTime}`}
+										eventDate={`${event.fields.dateTime['en-US']}`}
 									/>
 								</div>
 							</section>

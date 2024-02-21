@@ -15,12 +15,12 @@ export default function MembershipCard({
 	}
 	const getClass = () => {
         if (stripe) {
-			return `lg:w-1/4 w-full lg:mt-px border-2 border-gray-300 lg:border-0 lg:border-r`
+			return `md:w-1/4 w-full md:mt-px border-2 border-gray-300 md:border-0 md:border-r`
         }
         if (popular) {
-			return `lg:w-1/4 lg:-mt-px w-full mb-10 lg:mb-0 border-2 border-accent relative`
+			return `md:w-1/4 md:-mt-px w-full md:mb-0 border-2 border-accent relative`
         }
-        return `lg:w-1/4 w-full lg:mt-px border-2 border-gray-300 lg:border-none lg:border`
+        return `md:w-1/4 w-full md:mt-px border-2 border-gray-300 md:border-none md:border`
 	}
 	const addBadge = () => {
 		if (popular) {

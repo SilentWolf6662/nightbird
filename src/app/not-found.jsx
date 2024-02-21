@@ -36,7 +36,7 @@ export default function NotFound() {
 							exist or established.
 						</p>
 						<button
-							className='bg-accent text-primary px-11 py-2 uppercase font-dosis font-semibold text-lg mt-10'
+							className='w-full bg-accent text-primary font-semibold py-2 px-4 hover:bg-accent/80 focus:outline-none focus:ring-2 focus:ring-accent focus:ring-offset-2 uppercase font-dosis text-lg mt-10'
 							onClick={() => router.push('/')}>
 							Go Back Home
 						</button>

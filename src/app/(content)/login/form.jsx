@@ -1,18 +1,24 @@
 'use client'
 import Image from 'next/image'
 import { signIn } from 'next-auth/react'
+import { useRouter } from 'next/navigation'
 import CustomHeader from '@/components/CustomHeader'
 import title_decor from './../../../../public/img/title_decor.png'
 export default function Form() {
+	const router = useRouter()
 	const handleSubmit = async event => {
 		event.preventDefault()
 		const formData = new FormData(event.currentTarget)
-        const response = await signIn('credentials', {
-            email: formData.get('email'),
-            password: formData.get('password'),
-            redirect: false
-        })
-		console.log({ response })
+		const response = await signIn('credentials', {
+			email: formData.get('email'),
+			password: formData.get('password'),
+			redirect: false
+		})
+		//console.log({ response })
+		if (response?.error === null) {
+			router.push('/members')
+			router.refresh()
+		}
 	}
 	return (
 		<>
@@ -76,9 +82,19 @@ export default function Form() {
 								<div className='w-full mb-4'>
 									<button
 										type='submit'
-										className='w-full bg-accent text-primary font-semibold py-2 px-4 focus:outline-none focus:ring-2 focus:ring-accent focus:ring-offset-2'>
+										className='w-full bg-accent text-primary font-semibold py-2 px-4 hover:bg-accent/80 focus:outline-none focus:ring-2 focus:ring-accent focus:ring-offset-2'>
 										Login
 									</button>
+								</div>
+								<div className='w-full mb-4'>
+									<span className='text-primary/60 mr-1'>
+										Not member yet?
+									</span>
+									<a
+										href='/register'
+										className='text-accent hover:underline'>
+										Register
+									</a>
 								</div>
 							</form>
 						</div>
