@@ -14,13 +14,13 @@ export default function MembershipCard({
 		}
 	}
 	const getClass = () => {
-        if (stripe) {
+		if (stripe) {
 			return `md:w-1/4 w-full md:mt-px border-2 border-gray-300 md:border-0 md:border-r`
-        }
-        if (popular) {
+		}
+		if (popular) {
 			return `md:w-1/4 md:-mt-px w-full md:mb-0 border-2 border-accent relative`
-        }
-        return `md:w-1/4 w-full md:mt-px border-2 border-gray-300 md:border-none md:border`
+		}
+		return `md:w-1/4 w-full md:mt-px border-2 border-gray-300 md:border-none md:border`
 	}
 	const addBadge = () => {
 		if (popular) {
@@ -31,20 +31,6 @@ export default function MembershipCard({
 			)
 		} else {
 			return null
-		}
-	}
-	const yearlyPrice = () => {
-		if (price === 0) {
-			return 'Free'
-		} else {
-			return `$${price * 12}`
-		}
-	}
-	const quarterlyPrice = () => {
-		if (price === 0) {
-			return 'Free'
-		} else {
-			return `$${price * 3}`
 		}
 	}
 	return (
