@@ -3,12 +3,11 @@
 // Code to interact with Contentful's Content Management API (CMA) import { createClient } from 'contentful-management'
 import { createClient } from 'contentful-management'
 
-const regex = '/\[warning\] +([A-Z.1-9]+ ){3,}+.+.+.\w*/giA'
-
-const contentAccessTokenCDA = process.env.CONTENTFUL_ACCESS_TOKEN_CDA
-const contentAccessTokenCMA = process.env.CONTENTFUL_ACCESS_TOKEN_CMA
-const contentSpaceId = process.env.CONTENTFUL_SPACE_ID
-const contentEnvironmentId = process.env.CONTENTFUL_ENVIRONMENT_ID
+const contentAccessTokenCDA = '9cHvs5upn0jqALSZurbreFna31lvkkilIb0pXnHDE-U'
+const contentAccessTokenCMA =
+	'CFPAT-zT1dZDdaTX_D65RE1idc1-EN6UctFk0L46c3LjiXdgg'
+const contentSpaceId = 'o8ct8dldef1a'
+const contentEnvironmentId = 'master'
 
 // console.log('Contentful Access Token (CMA):', contentAccessTokenCMA)
 // console.log('Contetnful Access Token (CDA):', contentAccessTokenCDA)
@@ -19,7 +18,7 @@ export const createCMAClient = async () => {
 	// console.log('Creating Contentful client (CMA)...')
 	return createClient({
 		accessToken: contentAccessTokenCMA,
-		space: contentSpaceId,
+		space: contentSpaceId
 	})
 }
 
@@ -27,7 +26,7 @@ export const createCDAClient = async () => {
 	// console.log('Creating Contentful client (CDA)...')
 	return createClient({
 		accessToken: contentAccessTokenCDA,
-		space: contentSpaceId,
+		space: contentSpaceId
 	})
 }
 

@@ -1,6 +1,5 @@
 // Filen navn skal være route.jsx og skal ligge i en mappe med samme navn som pathen jeg ville have.
-// Eksempel: src/app/api/newsletter/route.jsx
-// Mit før var src/app/api/newsletter.jsx
+// Eksempel: src/app/api/contact/route.jsx
 
 import { NextResponse } from 'next/server'
 function validateName(name) {
@@ -50,9 +49,9 @@ function validateForm({ name, email, message }) {
 	const emailValid = validateEmail(email)
 	const messageValid = validateMessage(message)
 
-	console.log('nameValid', nameValid)
+	/* console.log('nameValid', nameValid)
 	console.log('emailValid', emailValid)
-	console.log('messageValid', messageValid)
+	console.log('messageValid', messageValid) */
 
 	if (nameValid !== 'Ok') {
 		return nameValid
@@ -75,7 +74,7 @@ function sendMessage(formData) {
 		message: formData.get('message')
 	})
 
-	console.log('response', response)
+	//console.log('response', response)
 
 	return response
 }
@@ -101,7 +100,7 @@ export async function POST(request) {
 		let formData = await request.formData()
 
 		const response = sendMessage(formData)
-		console.log('response Server', response)
+		//console.log('response Server', response)
 		if (response === 'Ok') {
 			return NextResponse.json(
 				{

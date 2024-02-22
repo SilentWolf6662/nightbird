@@ -33,7 +33,7 @@ export default function Form() {
 
 	const handlePfp = async file => {
 		if (!file) {
-			console.log('No file selected')
+			//console.log('No file selected')
 			return
 		}
 		const result = await fileToBase64(file)
@@ -47,7 +47,7 @@ export default function Form() {
 			if (!base64) return
 			handlePfp(file)
 		} catch (error) {
-			console.log(error.message)
+			//console.log(error.message)
 		}
 		setUploading(false)
 	}
@@ -56,7 +56,7 @@ export default function Form() {
 			return alert('No file selected. Please select a file.')
 		const file = target.files[0]
 		if (!file) return alert('No file selected. Please select a file.')
-		console.log(file)
+		//console.log(file)
 		if (file.size > 1000000) {
 			return alert(
 				'File size is too big. Please select a file less than 1MB.'
@@ -72,9 +72,9 @@ export default function Form() {
 			)
 		} */
 		let imageBlob = new Blob([file], { type: 'image/png' })
-		console.log(imageBlob)
+		//console.log(imageBlob)
 		setSelectedFile(file)
-		console.log(selectedFile)
+		//console.log(selectedFile)
 
 		handlePfp(file)
 	}
@@ -90,20 +90,20 @@ export default function Form() {
 		})
 		const pfpUrl = URL.createObjectURL(selectedFile)
 
-		/* console.log({ response })
+		//console.log({ response })
 
 		// Same every time
-		console.log({ selectedFile })
+		//console.log({ selectedFile })
 
 		// Changing every time
-		console.log({ pfpUrl }) */
+		//console.log({ pfpUrl })
 
 		/* if (response.ok) {
 			router.push('/members')
 		} */
 	}
 	useEffect(() => {
-		console.log(`observer/useEffect selectedFile:`, selectedFile)
+		//console.log(`observer/useEffect selectedFile:`, selectedFile)
 	}, [selectedFile]) // This effect will run whenever `selectedFile` changes
 	useEffect(() => {
 		//console.log(`observer/useEffect base64: ${base64.length}`)

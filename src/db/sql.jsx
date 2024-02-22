@@ -1,12 +1,12 @@
 // src/db/sql.jsx
 import mysql from 'mysql2/promise'
 const database = await mysql.createConnection({
-	host: process.env.MYSQL_HOST,
-	port: process.env.MYSQL_PORT,
-	database: process.env.MYSQL_DATABASE,
-	user: process.env.MYSQL_USER,
-	password: process.env.MYSQL_PASSWORD,
-	waitForConnections: true,
+	host: '127.0 0.1',
+	port: '3306',
+	database: 'nightbird',
+	user: 'nightbird',
+	password: 'CoRiFIqoK7RIn1nAQonopAfiGo5OR7',
+	waitForConnections: true
 })
 
 export { database }

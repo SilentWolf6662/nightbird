@@ -15,7 +15,7 @@ export async function POST(request) {
 		let formData = await request.formData()
 
 		// Get the file from the form
-		console.log({ formData })
+		//console.log({ formData })
 
 		// Destructure the fields from the form
 
@@ -46,7 +46,7 @@ export async function POST(request) {
 			!date ||
 			!pfp
 		) {
-			console.log('Missing fields')
+			//console.log('Missing fields')
 			return NextResponse.json({
 				message: 'Missing fields',
 				error: 'Missing fields',
@@ -86,7 +86,7 @@ export async function POST(request) {
 		)
 
 		if (existingUser[0].length > 0) {
-			console.log('User already exists')
+			//console.log('User already exists')
 			return NextResponse.json({
 				message: 'User already exists',
 				error: 'User already exists',
@@ -113,7 +113,7 @@ export async function POST(request) {
 		//console.log({ mysqlResponse })
 
 		// Create asset in contentful
-		console.log(`${username}'s profile picture`, 'image/png', pfp)
+		//console.log(`${username}'s profile picture`, 'image/png', pfp)
 		const assetCreated = await createAsset(
 			`${username}s profile picture`, // Title / Name / Filename / Asset name
 			`${username}s profile picture`, // Description / Caption / Alt text
@@ -121,12 +121,12 @@ export async function POST(request) {
 			pfp // File / Buffer
 		)
 
-		console.log({ assetCreated })
+		//console.log({ assetCreated })
 
 		// Publish asset
 		const assetPublished = await publishAsset(assetCreated.sys.id)
 
-		console.log({ assetPublished })
+		//console.log({ assetPublished })
 
 		/* // Create author in contentful
 		const authorCreated = await createAuthor({
@@ -141,7 +141,7 @@ export async function POST(request) {
 			lastName: lastName
 		})
 
-		console.log({ authorCreated })
+		//console.log({ authorCreated })
 
 		// Publish author
 

@@ -20,7 +20,7 @@ export default function Contact() {
 		})
 
 		const message = response.json().then(res => {
-			console.log('res', res)
+			//console.log('res', res)
 			alert(res.message)
 			if (
 				res.message ===

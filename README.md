@@ -1,36 +1,37 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Nightbird
+Version lavet af Mathias Drægert Mose Andersen
 
-## Getting Started
+### Notes
+Min version af NightBird er lavet med [Next.js](https://nextjs.org/) og bruger [Contentful](https://www.contentful.com) til at levere og gemme data til hjemmesiden og til selve login og registerings data bliver håndteret igennem database [MySQL](https://www.mysql.com/), detaljer ses længere nede i denne readme fil
 
-First, run the development server:
+Instruktioner i denne readme fil burde få dig til at kunne se hele siden
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+#### SQL Server
+
+Du kan lave en MySQL server med enten [MySQL](https://www.mysql.com/downloads/) eller [XAMPP](https://www.apachefriends.org/download.html) (Anbefalet til lokal test server ellers anbefales MySQL)
+
+Execute nightbird.sql i din mysql database
+
+SQL login details i koden:
+```
+host: 127.0 0.1
+port: 3306
+database: nightbird
+user: nightbird
+password: CoRiFIqoK7RIn1nAQonopAfiGo5OR7
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+#### Web Server
 
-You can start editing the page by modifying `app/page.jsx`. The page auto-updates as you edit the file.
+Du skal bruge følgende NPM kommandoer i en CMD konsol i den mappe denne fil ligger i (Kræver at du har [Node.js](https://nodejs.org/en)):
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+```bash
+npm i
+npm start
+```
 
-## Learn More
+Åben [http://localhost:3000](http://localhost:3000) med din browser for at se mit resultat.
 
-To learn more about Next.js, take a look at the following resources:
+#### Login og Register Notes
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+Dette blev jeg ikke færdig med men var begyndt og grunden til at jeg ikke blev færdig var simpelthen tidspress

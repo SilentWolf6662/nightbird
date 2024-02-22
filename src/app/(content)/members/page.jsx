@@ -21,10 +21,10 @@ export default async function Members() {
 
 	const user = response[0][0]
 
-	console.log({ session })
+	/* console.log({ session })
 	console.log({ sessionUser })
 	console.log({ response })
-	console.log({ user })
+	console.log({ user }) */
 
 	return (
 		<>
@@ -419,7 +419,7 @@ export default async function Members() {
 													stripe={false}
 												/>
 											</div>
-											<div className='mx-auto flex flex-col mt-2'>
+											<div className='mx-auto flex md:hidden flex-col mt-2'>
 												<Link
 													href='/login'
 													className='cursor-pointer text-accent hover:underline'>

@@ -66,7 +66,7 @@ const Navbar = () => {
 				<div>
 					<div
 						className={`flex-1 justify-self-center pb-3 mt-8 md:block md:pb-0 md:mt-0 ${
-							isOpen ? 'block' : 'hidden'
+							isOpen ? 'block md:block' : 'hidden md:block'
 						}`}>
 						<ul className='items-center justify-center space-y-8 md:flex md:space-x-6 md:space-y-0'>
 							<li className='text-white' key={'link-home'}>
@@ -78,7 +78,9 @@ const Navbar = () => {
 									Home
 									<figure
 										className={`flex flex-col justify-center items-start ml-1 ${
-											isOpen ? 'block' : 'hidden'
+											isOpen
+												? 'block md:block'
+												: 'hidden md:block'
 										}`}>
 										<Image
 											draggable='false'
@@ -105,7 +107,9 @@ const Navbar = () => {
 									About us
 									<figure
 										className={`flex flex-col justify-center items-start ml-1 ${
-											isOpen ? 'block' : 'hidden'
+											isOpen
+												? 'block md:block'
+												: 'hidden md:block'
 										}`}>
 										<Image
 											draggable='false'
@@ -132,7 +136,9 @@ const Navbar = () => {
 									Gallery
 									<figure
 										className={`flex flex-col justify-center items-start ml-1 ${
-											isOpen ? 'block' : 'hidden'
+											isOpen
+												? 'block md:block'
+												: 'hidden md:block'
 										}`}>
 										<Image
 											draggable='false'
@@ -159,7 +165,9 @@ const Navbar = () => {
 									Events
 									<figure
 										className={`flex flex-col justify-center items-start ml-1 ${
-											isOpen ? 'block' : 'hidden'
+											isOpen
+												? 'block md:block'
+												: 'hidden md:block'
 										}`}>
 										<Image
 											draggable='false'
@@ -184,7 +192,9 @@ const Navbar = () => {
 									Blog
 									<figure
 										className={`flex flex-col justify-center items-start ml-1 ${
-											isOpen ? 'block' : 'hidden'
+											isOpen
+												? 'block md:block'
+												: 'hidden md:block'
 										}`}>
 										<Image
 											draggable='false'
@@ -211,7 +221,9 @@ const Navbar = () => {
 									Members
 									<figure
 										className={`flex flex-col justify-center items-start ml-1 ${
-											isOpen ? 'block' : 'hidden'
+											isOpen
+												? 'block md:block'
+												: 'hidden md:block'
 										}`}>
 										<Image
 											draggable='false'
@@ -238,7 +250,9 @@ const Navbar = () => {
 									Contact us
 									<figure
 										className={`flex flex-col justify-center items-start ml-1 ${
-											isOpen ? 'block' : 'hidden'
+											isOpen
+												? 'block md:block'
+												: 'hidden md:block'
 										}`}>
 										<Image
 											draggable='false'

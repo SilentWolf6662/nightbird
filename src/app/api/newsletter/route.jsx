@@ -1,6 +1,5 @@
 // Filen navn skal være route.jsx og skal ligge i en mappe med samme navn som pathen jeg ville have.
 // Eksempel: src/app/api/newsletter/route.jsx
-// Mit før var src/app/api/newsletter.jsx
 
 import { NextResponse } from 'next/server'
 function validateName(name) {
@@ -31,8 +30,8 @@ function validateEmail(email) {
 		return 'There needs to be a "." after "@" symbol. Please enter a valid email address.'
 	}
 
-	console.log('test Regex 1', mailFormat.test(emailStr))
-	console.log('test Regex 2', emailStr.match(mailFormat))
+	//console.log('test Regex 1', mailFormat.test(emailStr))
+	//console.log('test Regex 2', emailStr.match(mailFormat))
 
 	if (!mailFormat.test(emailStr)) {
 		return 'Please enter a valid email address.'
@@ -46,9 +45,6 @@ function validateEmail(email) {
 function validateForm({ name, email }) {
 	const nameValid = validateName(name)
 	const emailValid = validateEmail(email)
-
-	/* console.log('nameValid', nameValid)
-	console.log('emailValid', emailValid) */
 
 	if (nameValid !== 'Ok') {
 		return nameValid

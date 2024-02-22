@@ -16,7 +16,7 @@ const EventTimer = ({ eventDate }) => {
         }
 
         // Parse the eventDate and eventTime to create a valid Date object
-        const [datePart, timePart] = eventDate.split(' ');
+        const [datePart, timePart] = eventDate.split('T');
         const [day, month, year] = datePart.split('.');
         const formattedDateString = `${year}-${month}-${day} ${timePart}`;
 

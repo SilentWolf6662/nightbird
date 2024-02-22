@@ -2,13 +2,13 @@
 import Image from 'next/image'
 
 export default function ProfilePicture({ pfp }) {
-	console.log(pfp)
+	//console.log(pfp)
 	const image = '/img/img1.png'
     const tempPfp = new Blob([image], { type: 'image/png' })
     const url = URL.createObjectURL(tempPfp)
-    console.log(url, tempPfp)
+    //console.log(url, tempPfp)
 	const onPfpChange = ({ target }) => {
-		console.log('Pfp changed to:', target.value)
+		//console.log('Pfp changed to:', target.value)
 	}
 	return (
 		<figure>
