@@ -30,7 +30,7 @@ const Navbar = () => {
 						</Link>
 						<div className='md:hidden'>
 							<button
-								className='p-2 text-gray-700 rounded-md outline-none focus:border-gray-400 focus:border'
+								className='p-2 text-grayscale-700 rounded-md outline-none focus:border-gray-400 focus:border'
 								onClick={() => setIsOpen(!isOpen)}>
 								{isOpen ? (
 									<svg
@@ -274,11 +274,6 @@ const Navbar = () => {
 			</div>
 			<hr className='border-t-[1px] border-seperator mt-4' />
 		</nav>
-		/*<nav className='bg-background h-auto text-primary'>
-			<div className='container flex justify-between items-center text-center pt-6'>
-			</div>
-			<hr className='border-t-[1px] border-seperator mt-4' />
-		</nav> */
 	)
 }
 
