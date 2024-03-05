@@ -1,7 +1,7 @@
 // src/db/sql.jsx
 import mysql from 'mysql2/promise'
 const database = await mysql.createConnection({
-	host: '127.0 0.1',
+	host: '127.0.0.1',
 	port: '3306',
 	database: 'nightbird',
 	user: 'nightbird',
