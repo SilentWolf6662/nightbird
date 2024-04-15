@@ -1,5 +1,5 @@
 # Nightbird
-Version lavet af Mathias Drægert Mose Andersen
+Version lavet af SilentWolf
 
 ### Notes
 Min version af NightBird er lavet med [Next.js](https://nextjs.org/) og bruger [Contentful](https://www.contentful.com) til at levere og gemme data til hjemmesiden og til selve login og registerings data bliver håndteret igennem database [MySQL](https://www.mysql.com/), detaljer ses længere nede i denne readme fil
